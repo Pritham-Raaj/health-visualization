@@ -1,0 +1,41 @@
+version: 2
+
+sources:
+  - name: raw
+    database: "{{ env_var('SNOWFLAKE_DATABASE') }}"
+    schema: "{{ env_var('SNOWFLAKE_RAW_SCHEMA') }}"
+    tables:
+      - name: raw_health
+        columns:
+          - name: id
+            tests: [not_null]
+
+models:
+  - name: health_source
+    columns:
+      - name: location
+        description: Location/dataset identifier
+  - name: heart_curated
+    columns:
+        - name: result
+          tests:
+            - not_null
+            - accepted_values:
+               arguments:
+                 values: [0, 1]
+  - name: heart_features
+    columns:
+        - name: sex_label
+          tests: [not_null]
+        - name: location_label
+          tests: [not_null]
+        - name: chestpaintype_label
+          tests: [not_null]
+        - name: restingbp_label
+          tests: [not_null]
+        - name: fastingbs_label
+          tests: [not_null]
+        - name: restecg_label
+          tests: [not_null]
+        - name: exercise_chestpain_label
+          tests: [not_null]
