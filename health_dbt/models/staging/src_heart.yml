@@ -39,3 +39,12 @@ models:
           tests: [not_null]
         - name: exercise_chestpain_label
           tests: [not_null]
+
+  - name: heart_tableau_view
+    columns:
+       - name: age
+         description: Patient age in years
+       - name: gender
+         description: Patient gender
+       - name: heart_disease_diagnosis
+         description: Heart Disease status(Disease Present/ No Disease)
